@@ -6,14 +6,33 @@
 //
 
 import SwiftUI
+import ActivityKit
 
 struct ContentView: View {
+    let liveActivitiesManager: LiveActivitiesManager
+    
+    init(liveActivitiesManager: LiveActivitiesManager) {
+        self.liveActivitiesManager = liveActivitiesManager
+    }
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Button {
+                // tap
+                liveActivitiesManager.attach()
+            } label: {
+                Text("Attach live activities")
+            }
+            .padding()
+            
+            Button {
+                // tap
+                liveActivitiesManager.detach()
+            } label: {
+                Text("Detach live activities")
+            }
+            .padding()
+
         }
         .padding()
     }
@@ -21,6 +40,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(liveActivitiesManager: LiveActivitiesManager())
     }
 }
